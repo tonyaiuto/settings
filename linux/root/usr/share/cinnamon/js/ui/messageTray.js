@@ -1874,13 +1874,19 @@ MessageTray.prototype = {
         let height = 5;
         if (panel)
             height += panel.actor.get_height();
-        let newY = monitor.y + height;
 
+        // Inspired by https://github.com/linuxmint/Cinnamon/issues/4892
+        let newY = monitor.y + height + 100;
+        let newX = monitor.x + 800;
+
+        /*
         if (this._notificationBin.y < expandedY)
             this._notificationBin.y = expandedY;
         else if (this._notification.actor.y != expandedY)
+        */
             this._tween(this._notificationBin, '_notificationState', State.SHOWN,
-                        { y: newY,
+                        { x: newX,
+                          y: newY,
                           time: ANIMATION_TIME,
                           transition: 'easeOutQuad'
                         });
