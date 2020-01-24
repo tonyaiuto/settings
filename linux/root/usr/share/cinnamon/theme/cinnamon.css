@@ -654,16 +654,18 @@ StScrollBar StButton#vhandle:hover {
  * Notifications
  * ===================================================================*/
 #notification {
-    font-size: 8.5pt;
+    font-size: 14pt;
     border-radius: 8px 8px 8px 8px;
     border: 2px solid #a5a5a5;
     background-gradient-direction: vertical;
     background-gradient-start: rgba(85,85,85,0.8);
     background-gradient-end: rgba(85,85,85,0.8);
     padding: 8px 8px 8px 8px;
-    spacing-rows: 10px;
-    spacing-columns: 10px;
-    margin-from-right-edge-of-screen: 20px;
+    spacing-rows: 16px;
+    spacing-columns: 16px;
+    /* Make the notify window visible on my wide screen */
+    margin-from-top-edge-of-screen: 20px;
+    margin-from-right-edge-of-screen: 200px;
     width: 34em;
     color: white;
 }
