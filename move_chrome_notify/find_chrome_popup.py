@@ -41,7 +41,7 @@ def find_chrome_popup(screen_width, screen_height):
                  # '-b', 'add,modal',
                  '-e', '10,%d,%d,%d,%d' % (1000, 200, -1, -1)]
                  # '-e', '10,%d,%d,%d,%d' % (1000, 200, w_width, w_height)]
-          cmd = ['/usr/bin/xdotool', 'windowmove', w_id, TARGET_X, TARGET_Y]
+          cmd = ['/usr/bin/xdotool', 'windowmove', w_id, str(TARGET_X), str(TARGET_Y)]
           print('doing', ' '.join(cmd))
           subprocess.check_call(cmd)
 
