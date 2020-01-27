@@ -28,7 +28,6 @@ def find_chrome_popup(screen_width, screen_height):
       continue
     m = win_re.match(line)
     if m:
-      print(line)
       w_id = m.group(1)
       w_width = int(m.group(3))
       w_height = int(m.group(4))
