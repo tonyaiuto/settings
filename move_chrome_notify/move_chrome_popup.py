@@ -56,6 +56,13 @@ def find_and_move_chrome_popup(screen_width, screen_height, options):
           cmd = ['/usr/bin/wmctrl', '-i', '-r', w_id,
                  '-e', '10,%d,%d,%d,%d' % (to_x, to_y, -1, -1)]
           cmd = ['/usr/bin/xdotool', 'windowmove', w_id, str(to_x), str(to_y)]
+          if options.zoom and options.zoom != 100:
+            zoom = float(options.zoom ) / 100.0
+            if zoom > 1:
+              cmd.extend(['windowsize',
+                          w_id,
+                          str(int(w_width * zoom)),
+                          str(int(w_height * zoom))])
           print('doing:', ' '.join(cmd))
           if not options.dry_run:
             subprocess.check_call(cmd)
@@ -65,12 +72,12 @@ def main():
   parser = argparse.ArgumentParser(
       description='Move the chrome notification popup to a place I can see it.')
   parser.add_argument('--display', default=':0', help='xdisplay')
-  parser.add_argument(
-      '--dry_run', '-n', action='store_true',
-      help='Just print effect, do not do it')
-  parser.add_argument(
-      '--move_to', default=DEFAULT_MOVETO_XY,
-      help='x,y coordinate to move window to')
+  parser.add_argument('--dry_run', '-n', action='store_true',
+                      help='Just print effect, do not do it')
+  parser.add_argument('--move_to', default=DEFAULT_MOVETO_XY,
+                      help='x,y coordinate to move window to')
+  parser.add_argument('--zoom', default=100,
+                      help='Zoom window to x% current size')
   options = parser.parse_args()
   # Note: xdotool requires display via then environment
   os.environ['DISPLAY'] = options.display
